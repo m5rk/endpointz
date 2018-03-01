@@ -27,6 +27,7 @@ end
 group :test do
   gem 'shoulda'
   gem 'simplecov', require: false
+  gem 'valid_attribute'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
