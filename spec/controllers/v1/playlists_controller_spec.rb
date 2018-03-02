@@ -62,4 +62,29 @@ describe V1::PlaylistsController do
       expect { request_method }.to change { user.playlists.count }.to(1)
     end
   end
+
+  describe 'PUT #add_song' do
+    let(:song) { create :song, name: "Californication" }
+    let(:playlist) { create :playlist, user: user }
+
+    let(:request_method) { put :add_song, params: params, xhr: true }
+    let(:params) do
+      {
+        id: playlist.id,
+        song_id: song.id
+      }
+    end
+
+    it 'is :ok' do
+      request_method
+
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'adds the song to the playlist for the user' do
+      request_method
+
+      expect(json[:data][:relationships][:songs][:data]).to have(1).song
+    end
+  end
 end
