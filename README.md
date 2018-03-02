@@ -1,24 +1,29 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This repository provides a basic setup for using Rails API with:
 
-Things you may want to cover:
+* Authentication using JWT
+* Persistence via Postgres
+* Serialization using JSON-API
+* API versioning via path (e.g., /v1/foo)
+* Testing with RSpec
 
-* Ruby version
+## Tests
 
-* System dependencies
+```
+rake
+```
 
-* Configuration
+## Coverage
 
-* Database creation
+After running the tests, view `./coverage/index.html`
 
-* Database initialization
+## Future
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Use uuid for primary keys
+* Define and handle token expiration
+* Document the endpoints
+* Leverage JSON-API deserialization
+* Expand the schema for medications
+* Create an audit trail of all requests
+* Invite family, add authorization system
