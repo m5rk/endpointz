@@ -4,10 +4,11 @@ describe V1::PlaylistsController do
   let(:user) { create :user }
   let(:token) { JsonWebToken.encode({user_id: user.id}) }
 
+  before do
+    request.env['HTTP_AUTHORIZATION'] = token
+  end
+
   describe 'GET #index' do
-    before do
-      request.env['HTTP_AUTHORIZATION'] = token
-    end
 
     let(:request_method) { get :index, params: params, xhr: true }
     let(:params) { { } }
@@ -44,6 +45,21 @@ describe V1::PlaylistsController do
 
         expect(json[:data]).to be_empty
       end
+    end
+  end
+
+  describe 'POST #create' do
+    let(:request_method) { post :create, params: params, xhr: true }
+    let(:params) { { name: 'my playlist' } }
+
+    it 'is :created' do
+      request_method
+
+      expect(response).to have_http_status(:created)
+    end
+
+    it 'adds a playlist to the user' do
+      expect { request_method }.to change { user.playlists.count }.to(1)
     end
   end
 end

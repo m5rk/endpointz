@@ -3,6 +3,6 @@ Rails.application.routes.draw do
     resource :authentication, only: :create
 
     resources :medications, only: [:create, :index]
-    resources :playlists, only: [:index]
+    resources :playlists, only: [:create, :index]
   end
 end
