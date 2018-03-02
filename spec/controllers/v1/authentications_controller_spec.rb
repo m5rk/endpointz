@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe AuthenticationsController do
+describe V1::AuthenticationsController do
   describe 'POST #create' do
     let(:request_method) { post :create, params: params, xhr: true }
     let(:user) { create :user, password: 'sekret' }

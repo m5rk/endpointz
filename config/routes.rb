@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  resource :authentication, only: :create
+  api_version(module: 'V1', path: { value: 'v1' }) do
+    resource :authentication, only: :create
+  end
 end
