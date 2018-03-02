@@ -12,6 +12,7 @@ gem 'pg'
 gem 'puma'
 gem 'rails', '~> 5.1.5'
 gem 'simple_command'
+gem 'versionist'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
