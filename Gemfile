@@ -7,6 +7,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bcrypt'
+gem 'jsonapi-rails'
 gem 'jwt'
 gem 'pg'
 gem 'puma'
