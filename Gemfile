@@ -13,6 +13,7 @@ gem 'pg'
 gem 'puma'
 gem 'rails', '~> 5.1.5'
 gem 'simple_command'
+gem 'state_machine', github: 'seuros/state_machine'
 gem 'versionist'
 
 group :development, :test do

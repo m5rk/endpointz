@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315164923) do
+ActiveRecord::Schema.define(version: 20180315214455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,12 +30,29 @@ ActiveRecord::Schema.define(version: 20180315164923) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "lines", force: :cascade do |t|
+    t.integer "playlist_import_id", null: false
+    t.integer "line_number", null: false
+    t.json "data", null: false
+    t.integer "song_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "medications", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_medications_on_user_id"
+  end
+
+  create_table "playlist_imports", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "state", null: false
+    t.text "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "playlist_songs", force: :cascade do |t|
@@ -70,7 +87,10 @@ ActiveRecord::Schema.define(version: 20180315164923) do
 
   add_foreign_key "artist_songs", "artists"
   add_foreign_key "artist_songs", "songs"
+  add_foreign_key "lines", "playlist_imports"
+  add_foreign_key "lines", "songs"
   add_foreign_key "medications", "users"
+  add_foreign_key "playlist_imports", "users"
   add_foreign_key "playlist_songs", "playlists"
   add_foreign_key "playlist_songs", "songs"
   add_foreign_key "playlists", "users"
